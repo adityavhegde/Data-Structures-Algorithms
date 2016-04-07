@@ -2,6 +2,7 @@
 
 /*
 ROUGH STACK IMPLEMENTATION FOR TREE TRAVERSAL
+This stack does not auto resize or has provision for exceptions.
 */
 
 public class MyStack {
