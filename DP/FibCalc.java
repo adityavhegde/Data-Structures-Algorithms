@@ -9,6 +9,7 @@ import java.util.Hashtable;
  */
 /*
 FIND THE Nth FIBONACCI NUMBER
+This is a simple example of dynamic programming
 */
 public class FibCalc {
     public static Hashtable h;
