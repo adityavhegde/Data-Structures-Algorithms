@@ -21,9 +21,7 @@ public class kMostPoints {
         input.add(new Point(1,2));
         input.add(new Point(0,4));
         input.add(new Point(10,4));
-        
 
-        
         for(Point p: input)
             heap.add(p);
         
@@ -41,6 +39,7 @@ class Point implements Comparable<Point>{
         this.y = y;
     }
        
+    @Override
     public int compareTo(Point p){
         if(this.x <= p.x)
             return -1;
