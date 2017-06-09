@@ -18,10 +18,11 @@ import java.util.Map;
 public class NumbersAddToN {
             
     static int start = 0; //always
-    static int end = 20; //the Sum
-    static int _N =  5; //number of numbers in a set, that add to a sum
+    static int end = 100; //the Sum
+    static int _N =  2; //number of numbers in a set, that add to a sum
     static HashMap<Node,ArrayList<Integer>> cache;
-
+    static int functionCalls = 0;
+    
     public static void main(String[] args) {
         
         cache = new HashMap<>();
@@ -31,6 +32,7 @@ public class NumbersAddToN {
         long endTime = System.nanoTime();
         
         System.out.println(endTime-startTime/100000.0);
+        System.out.println(functionCalls);
         /*
         for(Map.Entry each: cache.entrySet()){
             System.out.println(((Node)each.getKey()).currPoint
@@ -42,15 +44,17 @@ public class NumbersAddToN {
     
     static void generate(ArrayList<Integer> res, int start, int sum, int N){
 
-        if(N == 0)
+        if(N == 0){
             if(sum == 0) {
                 for(Integer each: res)
                     System.out.print(each+ " ");
                 System.out.println();
             }
             else res = null;
+        }
+        
+        for(int i = start; i <= sum ; i++){          
 
-        for(int i = start; i <= sum ; i++){
             ArrayList<Integer> temp = new ArrayList<>();
             
             if(!(res == null)){
@@ -61,9 +65,13 @@ public class NumbersAddToN {
                 
                 }
                 else temp.add(i);
+
             }
-                        
-            generate(temp,start + 1, sum - i, N-1);
+            
+            functionCalls++;
+
+            if(N-1>=0)
+                generate(temp,start + 1, sum - i, N-1);
 
         }
     }
