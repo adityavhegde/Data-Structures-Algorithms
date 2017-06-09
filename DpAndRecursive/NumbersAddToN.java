@@ -20,12 +20,10 @@ public class NumbersAddToN {
     static int start = 0; //always
     static int end = 100; //the Sum
     static int _N =  2; //number of numbers in a set, that add to a sum
-    static HashMap<Node,ArrayList<Integer>> cache;
     static int functionCalls = 0;
     
     public static void main(String[] args) {
         
-        cache = new HashMap<>();
            
         long startTime = System.nanoTime();
         generate(new ArrayList<Integer>(),start, end, _N);
