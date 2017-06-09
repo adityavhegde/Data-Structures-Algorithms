@@ -18,16 +18,19 @@ import java.util.Map;
 public class NumbersAddToN {
             
     static int start = 0; //always
-    static int end = 60; //the Sum
-    static int _N = 2 ; //number of numbers in a set, that add to a sum
+    static int end = 20; //the Sum
+    static int _N =  5; //number of numbers in a set, that add to a sum
     static HashMap<Node,ArrayList<Integer>> cache;
 
     public static void main(String[] args) {
         
         cache = new HashMap<>();
-                               
+           
+        long startTime = System.nanoTime();
         generate(new ArrayList<Integer>(),start, end, _N);
+        long endTime = System.nanoTime();
         
+        System.out.println(endTime-startTime/100000.0);
         /*
         for(Map.Entry each: cache.entrySet()){
             System.out.println(((Node)each.getKey()).currPoint
@@ -45,6 +48,7 @@ public class NumbersAddToN {
                     System.out.print(each+ " ");
                 System.out.println();
             }
+            else res = null;
 
         for(int i = start; i <= sum ; i++){
             ArrayList<Integer> temp = new ArrayList<>();
