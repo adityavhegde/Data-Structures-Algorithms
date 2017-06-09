@@ -8,6 +8,7 @@ package DpAndRecursive;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Question: find all N possible combinations that add to a given Sum
@@ -17,7 +18,7 @@ import java.util.HashMap;
 public class NumbersAddToN {
             
     static int start = 0; //always
-    static int end = 70; //the Sum
+    static int end = 10; //the Sum
     static int _N = 2; //number of numbers in a set, that add to a sum
     static HashMap<Node,ArrayList<Integer>> cache;
 
@@ -27,6 +28,9 @@ public class NumbersAddToN {
                                
         generate(new ArrayList<Integer>(),start, end, _N);
         
+        Iterator i = cache.entrySet().iterator();
+        while(i.hasNext())
+            System.out.print(i+" ");
     }        
     
     static void generate(ArrayList<Integer> res, int start, int sum, int N){
@@ -36,14 +40,13 @@ public class NumbersAddToN {
                 for(Integer each: res)
                     System.out.print(each+ " ");
                 System.out.println();
-                cache = new ArrayList[end+1][_N+1];
             }
 
         for(int i = start; i <= sum ; i++){
             ArrayList<Integer> temp = new ArrayList<>();
             //if already calculated, do not calculate again
             if(N>=0)
-                if(cache[i][N]!=null)
+                if(cache.containsKey(new Node(start, i, N)))
                     continue;
             
             if(!(res == null)){
@@ -56,7 +59,7 @@ public class NumbersAddToN {
                 else temp.add(i);
 
                 if(N>=0)
-                    cache[i][N] = new ArrayList(temp);
+                    cache.put(new Node(start, i, N), temp);
             }
                         
             generate(temp,start + 1, sum - i, N-1);
