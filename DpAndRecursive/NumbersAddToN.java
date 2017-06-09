@@ -31,8 +31,8 @@ public class NumbersAddToN {
         generate(new ArrayList<Integer>(),start, end, _N);
         long endTime = System.nanoTime();
         
-        System.out.println(endTime-startTime/100000.0);
-        System.out.println(functionCalls);
+        System.out.println("Time taken in milliseconds " + (endTime-startTime/100000.0));
+        System.out.println("Number of function calls "+ functionCalls);
         /*
         for(Map.Entry each: cache.entrySet()){
             System.out.println(((Node)each.getKey()).currPoint
@@ -46,6 +46,7 @@ public class NumbersAddToN {
 
         if(N == 0){
             if(sum == 0) {
+                
                 for(Integer each: res)
                     System.out.print(each+ " ");
                 System.out.println();
@@ -68,33 +69,11 @@ public class NumbersAddToN {
 
             }
             
-            functionCalls++;
-
-            if(N-1>=0)
+            if(N-1>=0){
+                functionCalls++;
                 generate(temp,start + 1, sum - i, N-1);
-
+            }
         }
     }
 }
 
-class Node{
-    int prevPoint;
-    int currPoint;
-    int N;
-
-    public Node(int prevPoint, int currPoint, int N) {
-        this.prevPoint = prevPoint;
-        this.currPoint = currPoint;
-        this.N = N;
-    }
-    @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Node) {
-            Node pp = (Node) obj;
-            return (pp.prevPoint == this.prevPoint && pp.currPoint == this.currPoint  && pp.N == this.N);
-        } else {
-            return false;
-        }
-    }
-   
-}
