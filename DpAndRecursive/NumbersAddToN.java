@@ -52,10 +52,6 @@ public class NumbersAddToN {
 
         for(int i = start; i <= sum ; i++){
             ArrayList<Integer> temp = new ArrayList<>();
-            //if already calculated, do not calculate again
-            if(N>=0)
-                if(cache.containsKey(new Node(start, i, N)))
-                    continue;
             
             if(!(res == null)){
                 
@@ -65,9 +61,6 @@ public class NumbersAddToN {
                 
                 }
                 else temp.add(i);
-
-                if(N>=0)
-                    cache.put(new Node(start, i, N), temp);
             }
                         
             generate(temp,start + 1, sum - i, N-1);
