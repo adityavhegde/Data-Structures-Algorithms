@@ -29,13 +29,14 @@ package DpAndRecursive;
  http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/
 */ 
 public class CoinChange {
-    final static int input[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+    final static int input[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     static int[][] cache;
-
+    static int cacheHits = 0;
+    
     public static void main(String[] args) {
         int start = 0;
         int end = input.length;
-        int total = 12;
+        int total = 10;
         
         cache = new int[end][total+1];
         
@@ -48,12 +49,14 @@ public class CoinChange {
         long v = System.nanoTime();
         
         System.out.println((v-u)/100000.0 );
+        System.out.println("Cache hits "+cacheHits);
         
         for(int i = 0; i<end;i++){
             for(int j = 0; j <= total; j++)
-                System.out.print(cache[i][j]+ " ");     
+                System.out.print(cache[i][j]+ "\t");     
             System.out.println();
         }
+        
     }
     
     static int coinChange(int be, int en, int sum){
@@ -66,8 +69,11 @@ public class CoinChange {
         //case: avoid negative values of sum produced
         //If the value was already calculated, use from cache
         if(sum > 0)
-            if(cache[be][sum]!=-1)
+            if(cache[be][sum]!=-1){
+                cacheHits++;
+                //System.out.println("cache hit "+be+" "+sum);
                 return cache[be][sum];
+            }
         //case: some function calls, may drive the value to negative sums. Cut off
         //those branches
         if(sum<0)

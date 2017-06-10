@@ -11,7 +11,7 @@ public class NumbersAddToN {
             
     static int start = 0; //always
     static int end = 12; //the Sum
-    static int _N =  2; //number of numbers in a set, that add to a sum
+    static int _N =  4; //number of numbers in a set, that add to a sum
     static int functionCalls = 0;
     
     public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class NumbersAddToN {
             else res = null;
         }
         
-        for(int i = 0; i <= sum ; i++){          
+        for(int i = start; i <= sum ; i++){          
             /*Uncomment this if you want to see the combinations System.out.print(i+" ");*/
             ArrayList<Integer> temp = new ArrayList<>();
             
