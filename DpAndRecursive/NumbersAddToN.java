@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class NumbersAddToN {
             
     static int start = 0; //always
-    static int end = 100; //the Sum
-    static int _N =  2; //number of numbers in a set, that add to a sum
+    static int end = 12; //the Sum
+    static int _N =  3; //number of numbers in a set, that add to a sum
     static int functionCalls = 0;
     
     public static void main(String[] args) {
@@ -28,8 +28,7 @@ public class NumbersAddToN {
     static void generate(ArrayList<Integer> res, int start, int sum, int N){
 
         if(N == 0){
-            if(sum == 0) {
-                
+            if(sum == 0) {               
                 for(Integer each: res)
                     System.out.print(each+ " ");
                 System.out.println();
@@ -38,7 +37,7 @@ public class NumbersAddToN {
         }
         
         for(int i = start; i <= sum ; i++){          
-
+            /*Uncomment this if you want to see the combinations System.out.print(i+" ");*/
             ArrayList<Integer> temp = new ArrayList<>();
             
             if(!(res == null)){
@@ -49,11 +48,17 @@ public class NumbersAddToN {
                 else temp.add(i);
             }
             
-            if(N-1>=0){
+            if(N-1>0){
                 functionCalls++;
                 generate(temp,start + 1, sum - i, N-1);
             }
+            else if(N-1 == 0 && sum-i == 0){
+                functionCalls++;
+                generate(temp,start + 1, sum - i, N-1);
+            }    
+            
         }
+        /*Uncomment this if you want to see the combinations System.out.println();*/
+
     }
 }
-
