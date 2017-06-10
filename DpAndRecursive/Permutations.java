@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package DpAndRecursive;
 
 /**
+ * Problem: generate all permutations of a string
+ * Note: A character can be repeated
  * Extended the logic from NumbersAddToN problem
  * @author Aditya
  */
 public class Permutations {
-    static String input ="abc";
+    static String input ="ab";
 
     public static void main(String[] args) {
         proc("",input.length());
